@@ -19,4 +19,17 @@ describe Populator::Record do
   it "should assign second parameter to id" do
     Populator::Record.new(Product, 2).id.should == 2
   end
+  
+  it "should pick random number from range" do
+    record = Populator::Record.new(Product, 1)
+    record.stock = 2..5
+    record.stock.should >= 2
+    record.stock.should <= 5
+  end
+  
+  it "should pick random value from array" do
+    record = Populator::Record.new(Product, 1)
+    record.name = %w[foo bar]
+    %w[foo bar].should include(record.name)
+  end
 end

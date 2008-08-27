@@ -8,7 +8,7 @@ module Populator
       @columns.each do |column|
         self.instance_eval <<-EOS
           def #{column}=(value)
-            @attributes[:#{column}] = value
+            @attributes[:#{column}] = interpret_value(value)
           end
           
           def #{column}
@@ -21,6 +21,16 @@ module Populator
     def attribute_values
       @columns.map do |column|
         @attributes[column.to_sym]
+      end
+    end
+    
+    private
+    
+    def interpret_value(value)
+      case value
+      when Array then value.rand
+      when Range then value.to_a.rand
+      else value
       end
     end
   end
