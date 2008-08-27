@@ -2,7 +2,9 @@ module Populator
   module ModelAdditions
     def populate(size)
       size.times do
-        create
+        record = Record.new(self)
+        yield(record) if block_given?
+        Product.create(record.attributes)
       end
     end
   end
