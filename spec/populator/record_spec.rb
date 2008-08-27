@@ -8,4 +8,11 @@ describe Populator::Record do
       record.send(column).should == "foo"
     end
   end
+  
+  it "should return attribute values in same order as columns" do
+    record = Populator::Record.new(Product)
+    record.name = "foo"
+    expected = Product.column_names.map { |c| "foo" if c == 'name' }
+    record.attribute_values.should == expected
+  end
 end

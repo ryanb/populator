@@ -4,8 +4,8 @@ module Populator
     
     def initialize(model_class)
       @attributes = {}
-      
-      model_class.column_names.each do |column|
+      @columns = model_class.column_names
+      @columns.each do |column|
         self.instance_eval <<-EOS
           def #{column}=(value)
             @attributes[:#{column}] = value
@@ -15,6 +15,12 @@ module Populator
             @attributes[:#{column}]
           end
         EOS
+      end
+    end
+    
+    def attribute_values
+      @columns.map do |column|
+        @attributes[column.to_sym]
       end
     end
   end
