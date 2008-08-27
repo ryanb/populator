@@ -2,8 +2,8 @@ module Populator
   class Record
     attr_accessor :attributes
     
-    def initialize(model_class)
-      @attributes = {}
+    def initialize(model_class, id)
+      @attributes = { :id => id }
       @columns = model_class.column_names
       @columns.each do |column|
         self.instance_eval <<-EOS

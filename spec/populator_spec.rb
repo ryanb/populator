@@ -27,6 +27,24 @@ describe Populator do
   it "should only use one query when inserting records" do
     $queries_executed = []
     Product.populate(10)
-    $queries_executed.should have(1).record
+    $queries_executed.grep(/^insert/i).should have(1).record
+  end
+  
+  it "should start id at 1 and increment when table is empty" do
+    Product.delete_all
+    expected_id = 1
+    Product.populate(5) do |product|
+      product.id.should == expected_id
+      expected_id += 1
+    end
+  end
+  
+  it "should start id at last id and increment" do
+    product = Product.create
+    expected_id = product.id+1
+    Product.populate(5) do |product|
+      product.id.should == expected_id
+      expected_id += 1
+    end
   end
 end
