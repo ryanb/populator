@@ -2,6 +2,9 @@
 
 Populate an Active Record database with mass insert.
 
+Special thanks to Zach Dennis for his ar-extensions gem which some of 
+this code is loosely based on.
+
 
 == Install
 
@@ -18,14 +21,18 @@ And then load it in your project:
 
 STILL IN EARLY DEVELOPMENT - so some of this doesn't work yet.
 
-This gem adds a "populate" method to all Active Record models. Pass the number of records you want to create along with a block. In the block you can set the column values for each record.
+This gem adds a "populate" method to all Active Record models. Pass the 
+number of records you want to create along with a block. In the block 
+you can set the column values for each record.
 
   Person.populate(3000) do |person|
     person.first_name = "John"
     person.last_name = "Smith"
   end
 
-This will do a mass insert into the database so it is very fast. For performance reasons, "person" is not an instance of the model. It's just a simple interface for setting the column values.
+This will do a mass insert into the database so it is very fast. For 
+performance reasons, "person" is not an instance of the model. It's 
+just a simple interface for setting the column values.
 
 The person object contains the "id" so you can set up associations.
 
@@ -46,7 +53,8 @@ Passing an range or array of values will randomly select one.
     person.annual_income = 10000..200000
   end
 
-This will create 1000 to 5000 men or women with the annual income between 10,000 and 200,000.
+This will create 1000 to 5000 men or women with the annual income 
+between 10,000 and 200,000.
 
 
 == Development

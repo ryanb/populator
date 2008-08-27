@@ -23,4 +23,11 @@ describe Populator do
       product.should_not be_kind_of(ActiveRecord::Base)
     end
   end
+  
+  it "should only use one query when inserting records" do
+    pending
+    $queries_executed = []
+    Product.populate(10)
+    $queries_executed.should have(1).record
+  end
 end
