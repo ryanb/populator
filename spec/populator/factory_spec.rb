@@ -1,9 +1,9 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Populator::Factory do
-  describe "for 10 products" do
+  describe "for 5 products" do
     before(:each) do
-      @factory = Populator::Factory.new(Product, 10)
+      @factory = Populator::Factory.new(Product, 5)
     end
   
     it "should only use one query when inserting records" do
@@ -28,6 +28,19 @@ describe Populator::Factory do
         product.id.should == expected_id
         expected_id += 1
       end
+    end
+  end
+  
+  describe "between 2 and 4 products" do
+    before(:each) do
+      @factory = Populator::Factory.new(Product, 2..4)
+    end
+    
+    it "should generate within range" do
+      Product.delete_all
+      @factory.run
+      Product.count.should >= 2
+      Product.count.should <= 4
     end
   end
 end
