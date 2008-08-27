@@ -10,6 +10,10 @@ module Populator
           def #{column}=(value)
             @attributes[:#{column}] = value
           end
+          
+          def #{column}
+            @attributes[:#{column}]
+          end
         EOS
       end
     end
