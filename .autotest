@@ -1,0 +1,3 @@
+Autotest.add_hook :initialize do |at|
+  at.add_exception('spec/test.sqlite3')
+end
