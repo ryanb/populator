@@ -1,0 +1,12 @@
+CHANGELOG
+lib/populator.rb
+LICENSE
+Manifest
+README
+spec/models/product.rb
+spec/populator_spec.rb
+spec/spec_helper.rb
+spec/test.sqlite3
+tasks/deployment.rake
+tasks/spec.rake
+TODO
