@@ -16,6 +16,8 @@ And then load it in your project:
 
 == Usage
 
+STILL IN EARLY DEVELOPMENT - so some of this doesn't work yet.
+
 This gem adds a "populate" method to all Active Record models. Pass the number of records you want to create along with a block. In the block you can set the column values for each record.
 
   Person.populate(3000) do |person|
@@ -35,7 +37,7 @@ The person object contains the "id" so you can set up associations.
     end
   end
 
-That will create between 30 projects for each person.
+That will create 30 projects for each person.
 
 Passing an range or array of values will randomly select one.
 
