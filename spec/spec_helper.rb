@@ -10,17 +10,27 @@ ActiveRecord::Base.establish_connection({
   :dbfile => File.dirname(__FILE__) + "/test.sqlite3" 
 })
 
-unless ActiveRecord::Base.connection.respond_to? :execute_with_query_record
-  ActiveRecord::Base.connection.class.class_eval do
-    IGNORED_SQL = [/^PRAGMA/, /^SELECT currval/, /^SELECT CAST/, /^SELECT @@IDENTITY/, /^SELECT @@ROWCOUNT/]
-
-    def execute_with_query_record(sql, name = nil, &block)
+# keep track of which queries have been executed
+unless ActiveRecord::Base.connection.raw_connection.respond_to? :record_query
+  ActiveRecord::Base.connection.raw_connection.class.class_eval do
+    IGNORED_SQL = [/^PRAGMA/, /^SELECT currval/, /^SELECT CAST/, /^SELECT @@IDENTITY/, /^SELECT @@ROWCOUNT/, /^begin /i, /^commit /i]
+    
+    def record_query(sql)
       $queries_executed ||= []
       $queries_executed << sql unless IGNORED_SQL.any? { |r| sql =~ r }
-      execute_without_query_record(sql, name, &block)
     end
-
+    
+    def execute_with_query_record(*args, &block)
+      record_query(args.first)
+      execute_without_query_record(*args, &block)
+    end
     alias_method_chain :execute, :query_record
+    
+    def execute_batch_with_query_record(*args, &block)
+      record_query(args.first)
+      execute_batch_without_query_record(*args, &block)
+    end
+    alias_method_chain :execute_batch, :query_record
   end
 end
 
