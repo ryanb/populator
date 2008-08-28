@@ -8,11 +8,11 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ryan Bates"]
-  s.date = %q{2008-08-27}
+  s.date = %q{2008-08-28}
   s.description = %q{Mass populate an Active Record database.}
   s.email = %q{ryan (at) railscasts (dot) com}
-  s.extra_rdoc_files = ["CHANGELOG", "lib/populator.rb", "LICENSE", "README", "tasks/deployment.rake", "tasks/spec.rake", "TODO"]
-  s.files = ["CHANGELOG", "lib/populator.rb", "LICENSE", "Manifest", "README", "spec/models/product.rb", "spec/populator_spec.rb", "spec/spec_helper.rb", "spec/test.sqlite3", "tasks/deployment.rake", "tasks/spec.rake", "TODO", "populator.gemspec"]
+  s.extra_rdoc_files = ["CHANGELOG", "lib/populator/adapters/abstract.rb", "lib/populator/adapters/sqlite.rb", "lib/populator/factory.rb", "lib/populator/model_additions.rb", "lib/populator/record.rb", "lib/populator.rb", "LICENSE", "README", "tasks/deployment.rake", "tasks/spec.rake"]
+  s.files = ["CHANGELOG", "lib/populator/adapters/abstract.rb", "lib/populator/adapters/sqlite.rb", "lib/populator/factory.rb", "lib/populator/model_additions.rb", "lib/populator/record.rb", "lib/populator.rb", "LICENSE", "Manifest", "populator.gemspec", "README", "spec/database.yml", "spec/models/product.rb", "spec/populator/factory_spec.rb", "spec/populator/model_additions_spec.rb", "spec/populator/record_spec.rb", "spec/README", "spec/spec_helper.rb", "tasks/deployment.rake", "tasks/spec.rake"]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/ryanb/populator}
   s.rdoc_options = ["--line-numbers", "--inline-source", "--title", "Populator", "--main", "README"]
@@ -45,7 +45,7 @@ end
 #   p.url            = "http://github.com/ryanb/populator"
 #   p.author         = 'Ryan Bates'
 #   p.email          = "ryan (at) railscasts (dot) com"
-#   p.ignore_pattern = ["script/*"]
+#   p.ignore_pattern = ["script/*", "**/*.sqlite3"]
 # end
 # 
 # Dir["#{File.dirname(__FILE__)}/tasks/*.rake"].sort.each { |ext| load ext }

@@ -7,6 +7,7 @@ lib/populator/record.rb
 lib/populator.rb
 LICENSE
 Manifest
+populator.gemspec
 README
 spec/database.yml
 spec/models/product.rb
@@ -15,6 +16,5 @@ spec/populator/model_additions_spec.rb
 spec/populator/record_spec.rb
 spec/README
 spec/spec_helper.rb
-spec/test.sqlite3
 tasks/deployment.rake
 tasks/spec.rake
