@@ -1,7 +1,5 @@
 require 'spec/rake/spectask'
 
-spec_files = Rake::FileList["spec/**/*_spec.rb"]
-
 ADAPTERS = %w[sqlite3 mysql]
 
 desc "Run specs under all supported databases"
@@ -17,7 +15,7 @@ namespace :spec do
     
     desc "Run specs under #{adapter}"
     Spec::Rake::SpecTask.new(adapter => "spec:prepare:#{adapter}") do |t|
-      t.spec_files = spec_files
+      t.spec_files = Rake::FileList["spec/**/*_spec.rb"]
       t.spec_opts = ["-c"]
     end
   end

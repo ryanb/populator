@@ -12,8 +12,8 @@ ActiveRecord::Base.establish_connection(
 )
 
 # keep track of which queries have been executed
-unless ActiveRecord::Base.connection.raw_connection.respond_to? :record_query
-  ActiveRecord::Base.connection.raw_connection.class.class_eval do
+unless ActiveRecord::Base.connection.respond_to? :record_query
+  ActiveRecord::Base.connection.class.class_eval do
     IGNORED_SQL = [/^PRAGMA/, /^SELECT currval/, /^SELECT CAST/, /^SELECT @@IDENTITY/, /^SELECT @@ROWCOUNT/, /^begin /i, /^commit /i]
     
     def record_query(sql)

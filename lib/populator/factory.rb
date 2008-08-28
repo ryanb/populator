@@ -32,7 +32,7 @@ module Populator
     end
     
     def save_records
-      @model_class.connection.raw_connection.execute_batch(insert_statements.join(';'))
+      @model_class.connection.execute_batch(insert_statements.join(';'))
     end
     
     def insert_statements
