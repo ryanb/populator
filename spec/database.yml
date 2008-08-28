@@ -1,0 +1,11 @@
+sqlite3:
+  adapter: sqlite3
+  database: spec/test.sqlite3
+  timeout: 5000
+
+mysql:
+  adapter: mysql
+  database: populator_test
+  username: populator
+  password: 
+  host: localhost

@@ -1,0 +1,16 @@
+Running Populator Specs
+-----------------------
+
+There are several rake tasks for running the specs.
+
+  rake spec             # Run specs under all databases
+  rake spec:mysql       # Run specs under mysql
+  rake spec:sqlite3     # Run specs under sqlite3
+  ...
+
+To run the specs under mysql you have to create the database and user.
+See spec/database.yml for specifics.
+
+  CREATE DATABASE populator_test;
+  GRANT ALL ON populator_test.* TO populator@localhost;
+

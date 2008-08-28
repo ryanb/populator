@@ -4,11 +4,12 @@ require 'active_support'
 require 'active_record'
 require File.dirname(__FILE__) + '/../lib/populator.rb'
 
+ENV['POPULATOR_ADAPTER'] ||= 'sqlite3'
+
 # setup database adapter
-ActiveRecord::Base.establish_connection({
-  :adapter => "sqlite3", 
-  :dbfile => File.dirname(__FILE__) + "/test.sqlite3" 
-})
+ActiveRecord::Base.establish_connection(
+  YAML.load(File.read(File.dirname(__FILE__) + "/database.yml"))[ENV['POPULATOR_ADAPTER']]
+)
 
 # keep track of which queries have been executed
 unless ActiveRecord::Base.connection.raw_connection.respond_to? :record_query
