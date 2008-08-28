@@ -32,13 +32,17 @@ module Populator
     end
     
     def save_records
-      @model_class.connection.execute_batch(insert_statements.join(';'))
+      @model_class.connection.populate(@model_class.quoted_table_name, columns_sql, rows_sql_arr, "#{@model_class.name} Populate")
     end
     
-    def insert_statements
+    def columns_sql
+      "(#{quoted_column_names.join(', ')})"
+    end
+    
+    def rows_sql_arr
       @records.map do |record|
         quoted_attributes = record.attribute_values.map { |v| @model_class.sanitize(v) }
-        "INSERT INTO #{@model_class.quoted_table_name} (#{quoted_column_names.join(', ')}) VALUES(#{quoted_attributes.join(', ')})"
+        "(#{quoted_attributes.join(', ')})"
       end
     end
   end

@@ -5,4 +5,3 @@ require 'populator/record'
 
 require 'populator/adapters/abstract'
 require 'populator/adapters/sqlite'
-require 'populator/adapters/mysql'
