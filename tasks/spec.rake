@@ -2,14 +2,13 @@ require 'spec/rake/spectask'
 
 spec_files = Rake::FileList["spec/**/*_spec.rb"]
 
-desc "Run all specs"
-Spec::Rake::SpecTask.new do |t|
-  t.spec_files = spec_files
-  t.spec_opts = ["-c"]
-end
+ADAPTERS = %w[sqlite3 mysql]
+
+desc "Run specs under all supported databases"
+task :spec => ADAPTERS.map { |a| "spec:#{a}" }
 
 namespace :spec do
-  %w[mysql sqlite3].each do |adapter|
+  ADAPTERS.each do |adapter|
     namespace :prepare do
       task adapter do
         ENV["POPULATOR_ADAPTER"] = adapter
