@@ -1,13 +1,11 @@
 Features
 - add random_foo method to record for randomly generating content
 - randomly fill every column if no block is passed to populate
-- add "words" method to generate a number of words
 - limit number of queries per insert
 
 Possible
 - iterate through array instead of selecting at random to ensure all values are chosen
 - if hash is passed, apply given value that number of times: { 'foo' => 3, 'bar' => 2 }
-- add "sentences" method to generate a number of sentences
 
 Performance
 - ruby-prof to see where the bottlenecks are

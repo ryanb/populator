@@ -38,4 +38,8 @@ describe Populator::Random do
     Populator.expects(:rand).with(5).returns(3)
     Populator.words(10...15).split.should have(13).records
   end
+  
+  it "should generate 3 random sentences" do
+    Populator.sentences(3).split(/\. [A-Z]/).should have(3).records
+  end
 end

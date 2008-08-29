@@ -60,6 +60,7 @@ There are a few methods to generate random data as well:
 
   Populator.words(3) # generates 3 random words separated by spaces
   Populator.words(10..20) # generates between 10 and 20 random words
+  Populator.sentences(5) # generates 5 sentences
 
 If you want fancier data, try the Faker gem.
 

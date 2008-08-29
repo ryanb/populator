@@ -15,6 +15,12 @@ module Populator
       (1..interpret_value(total)).map { WORDS.rand }.join(' ')
     end
     
+    def sentences(total)
+      (1..interpret_value(total)).map do
+        words(5..20).capitalize
+      end.join('. ')
+    end
+    
     def interpret_value(value)
       case value
       when Array then value.rand
