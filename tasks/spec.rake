@@ -1,6 +1,6 @@
 require 'spec/rake/spectask'
 
-ADAPTERS = %w[sqlite3 mysql postgresql]
+ADAPTERS = YAML.load(File.read(File.dirname(__FILE__) + "/../spec/database.yml")).keys
 
 desc "Run specs under all supported databases"
 task :spec => ADAPTERS.map { |a| "spec:#{a}" }

@@ -1,3 +1,5 @@
+# you can add and remove entries to support different databases in tests.
+
 sqlite3:
   adapter: sqlite3
   database: spec/test.sqlite3
