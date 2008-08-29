@@ -22,6 +22,7 @@ describe Populator::Factory do
     end
   
     it "should start id at last id and increment" do
+      Product.delete_all
       product = Product.create
       expected_id = product.id+1
       @factory.run do |product|

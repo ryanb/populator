@@ -1,6 +1,6 @@
 require 'spec/rake/spectask'
 
-ADAPTERS = %w[sqlite3 mysql]
+ADAPTERS = %w[sqlite3 mysql postgresql]
 
 desc "Run specs under all supported databases"
 task :spec => ADAPTERS.map { |a| "spec:#{a}" }
