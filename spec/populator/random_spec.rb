@@ -29,4 +29,13 @@ describe Populator::Random do
     Kernel.expects(:rand).with(5).returns(2)
     Populator.value_in_range('a'..'e').should == 'c'
   end
+  
+  it "should pick 3 random words" do
+    Populator.words(3).split.should have(3).records
+  end
+  
+  it "should pick a random number of random words" do
+    Populator.expects(:rand).with(5).returns(3)
+    Populator.words(10...15).split.should have(13).records
+  end
 end
