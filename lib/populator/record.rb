@@ -29,7 +29,7 @@ module Populator
     def interpret_value(value)
       case value
       when Array then value.rand
-      when Range then value.to_a.rand
+      when Range then Populator.value_in_range(value)
       else value
       end
     end

@@ -2,14 +2,16 @@ Features
 - add random_foo method to record for randomly generating content
 - randomly fill every column if no block is passed to populate
 - add "words" method to generate a number of words
-- add "sentences" method to generate a number of sentences
+
+Possible
 - iterate through array instead of selecting at random to ensure all values are chosen
 - if hash is passed, apply given value that number of times: { 'foo' => 3, 'bar' => 2 }
+- add "sentences" method to generate a number of sentences
 
 Performance
 - ruby-prof to see where the bottlenecks are
 - benchmark to find faster solutions
-- don't convert to an array to randomly select integers, dates, times, etc.
+- ensure instatiating the model is really that much of a performance hit.
 
 Support Environments
 - sqlite 2

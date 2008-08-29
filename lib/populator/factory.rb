@@ -2,7 +2,7 @@ module Populator
   class Factory
     def initialize(model_class, amount)
       @model_class = model_class
-      @amount = amount.kind_of?(Integer) ? amount : amount.to_a.rand
+      @amount = amount.kind_of?(Integer) ? amount : Populator.value_in_range(amount)
       @records = []
     end
     
