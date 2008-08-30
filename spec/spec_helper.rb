@@ -38,7 +38,9 @@ end
 
 # load models
 # there's probably a better way to handle this
+require File.dirname(__FILE__) + '/models/category.rb'
 require File.dirname(__FILE__) + '/models/product.rb'
+CreateCategories.migrate(:up) unless Category.table_exists?
 CreateProducts.migrate(:up) unless Product.table_exists?
 
 Spec::Runner.configure do |config|

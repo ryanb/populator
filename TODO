@@ -2,6 +2,8 @@ Features
 - add random_foo method to record for randomly generating content
 - randomly fill every column if no block is passed to populate
 - limit number of queries per insert
+- keep track of id number when nesting same class/table
+- get single table inheritance working.
 
 Possible
 - iterate through array instead of selecting at random to ensure all values are chosen
@@ -10,10 +12,14 @@ Possible
 Performance
 - ruby-prof to see where the bottlenecks are
 - benchmark to find faster solutions
-- ensure instatiating the model is really that much of a performance hit.
+- ensure instantiating the model is really that much of a performance hit.
 - don't use an insert for every nested factory - do it all at once at the end
 
 Support Environments
 - sqlite 2
 - old rails
 - edge rails
+
+Tests
+- automatically detect schema changes and rebuild database
+- add db:reset, db:drop and db:create rake tasks
