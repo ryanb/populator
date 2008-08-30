@@ -1,7 +1,7 @@
 module Populator
   module ModelAdditions
     def populate(amount, &block)
-      Factory.new(self, amount).run(&block)
+      Factory.for_model(self).populate(amount, &block)
     end
   end
 end

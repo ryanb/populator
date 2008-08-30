@@ -1,14 +1,51 @@
 module Populator
   class Factory
-    def initialize(model_class, amount)
+    @factories = {}
+    @depth = 0
+    
+    def self.for_model(model_class)
+      @factories[model_class] ||= new(model_class)
+    end
+    
+    def self.save_remaining_records
+      @factories.values.each do |factory|
+        factory.save_records
+      end
+      @factories = {}
+    end
+    
+    def self.remember_depth
+      @depth += 1
+      yield
+      @depth -= 1
+      save_remaining_records if @depth.zero?
+    end
+    
+    def initialize(model_class)
       @model_class = model_class
-      @amount = Populator.interpret_value(amount)
       @records = []
     end
     
-    def run(&block)
-      build_records(&block)
-      save_records
+    def populate(amount, &block)
+      self.class.remember_depth do
+        build_records(Populator.interpret_value(amount), &block)
+      end
+    end
+    
+    def build_records(amount, &block)
+      last_id = last_id_in_database + @records.size
+      amount.times do |n|
+        record = Record.new(@model_class, last_id + n + 1)
+        block.call(record) if block
+        @records << record
+      end
+    end
+    
+    def save_records
+      unless @records.empty?
+        @model_class.connection.populate(@model_class.quoted_table_name, columns_sql, rows_sql_arr, "#{@model_class.name} Populate")
+        @records.clear
+      end
     end
     
     private
@@ -19,20 +56,8 @@ module Populator
       end
     end
     
-    def last_id
+    def last_id_in_database
       @model_class.connection.select_value("SELECT id FROM #{@model_class.quoted_table_name} ORDER BY id DESC", "#{@model_class.name} Last ID").to_i
-    end
-    
-    def build_records(&block)
-      (1..@amount).map do |i|
-        record = Record.new(@model_class, last_id+i)
-        block.call(record) if block
-        @records << record
-      end
-    end
-    
-    def save_records
-      @model_class.connection.populate(@model_class.quoted_table_name, columns_sql, rows_sql_arr, "#{@model_class.name} Populate")
     end
     
     def columns_sql

@@ -5,7 +5,7 @@ require 'active_record'
 require File.dirname(__FILE__) + '/../lib/populator.rb'
 
 adapter = ENV['POPULATOR_ADAPTER'] || 'sqlite3'
-puts "Running specs on #{ENV['POPULATOR_ADAPTER']}"
+puts "Running specs on #{adapter}"
 
 # setup database adapter
 ActiveRecord::Base.establish_connection(

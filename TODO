@@ -1,6 +1,4 @@
 Features
-- add random_foo method to record for randomly generating content
-- randomly fill every column if no block is passed to populate
 - limit number of queries per insert
 - keep track of id number when nesting same class/table
 - get single table inheritance working.
@@ -8,12 +6,13 @@ Features
 Possible
 - iterate through array instead of selecting at random to ensure all values are chosen
 - if hash is passed, apply given value that number of times: { 'foo' => 3, 'bar' => 2 }
+- randomly fill every column if no block is passed to populate
+- add random_foo method to record for randomly generating content
 
 Performance
 - ruby-prof to see where the bottlenecks are
 - benchmark to find faster solutions
 - ensure instantiating the model is really that much of a performance hit.
-- don't use an insert for every nested factory - do it all at once at the end
 
 Support Environments
 - sqlite 2
