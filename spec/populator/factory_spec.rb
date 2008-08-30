@@ -48,4 +48,12 @@ describe Populator::Factory do
     end
     $queries_executed.grep(/^insert/i).should have(2).record
   end
+  
+  it "should only use one query when nesting factories of the same type" do
+    $queries_executed = []
+    Populator::Factory.for_model(Product).populate(3) do |product|
+      Populator::Factory.for_model(Product).populate(3)
+    end
+    $queries_executed.grep(/^insert/i).should have(1).record
+  end
 end

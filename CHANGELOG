@@ -1,3 +1,5 @@
+* improving performance when nesting factories
+
 * adding Populate.sentences to generate a lot of text
 
 * adding Populate.words to fetch some random words
