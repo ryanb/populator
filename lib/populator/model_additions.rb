@@ -1,7 +1,7 @@
 module Populator
   module ModelAdditions
-    def populate(amount, &block)
-      Factory.for_model(self).populate(amount, &block)
+    def populate(amount, options = {}, &block)
+      Factory.for_model(self).populate(amount, options, &block)
     end
   end
 end

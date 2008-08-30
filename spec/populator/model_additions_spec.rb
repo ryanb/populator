@@ -23,4 +23,12 @@ describe Populator::ModelAdditions do
       product.should_not be_kind_of(ActiveRecord::Base)
     end
   end
+    
+  it "should not pass options hash" do
+    $queries_executed = []
+    Product.populate(5, :per_query => 2) do |product|
+      product.should_not be_kind_of(ActiveRecord::Base)
+    end
+    $queries_executed.grep(/^insert/i).should have(3).records
+  end
 end

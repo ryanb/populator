@@ -1,5 +1,7 @@
 module Populator
   class Factory
+    DEFAULT_RECORDS_PER_QUERY = 1000
+    
     @factories = {}
     @depth = 0
     
@@ -26,23 +28,25 @@ module Populator
       @records = []
     end
     
-    def populate(amount, &block)
+    def populate(amount, options = {}, &block)
       self.class.remember_depth do
-        build_records(Populator.interpret_value(amount), &block)
+        build_records(Populator.interpret_value(amount), options[:per_query] || DEFAULT_RECORDS_PER_QUERY, &block)
       end
     end
     
-    def build_records(amount, &block)
+    def build_records(amount, per_query, &block)
       amount.times do
         record = Record.new(@model_class, last_id_in_database + @records.size + 1)
         @records << record
         block.call(record) if block
+        save_records if @records.size >= per_query
       end
     end
     
     def save_records
       unless @records.empty?
         @model_class.connection.populate(@model_class.quoted_table_name, columns_sql, rows_sql_arr, "#{@model_class.name} Populate")
+        @last_id_in_database = @records.last.id
         @records.clear
       end
     end

@@ -1,6 +1,4 @@
 Features
-- limit number of queries per insert
-- keep track of id number when nesting same class/table
 - get single table inheritance working.
 
 Possible
