@@ -1,3 +1,5 @@
+*0.2.0* (August 30th, 2008)
+
 * adding :per_query option to limit how many inserts are made per query
 
 * improving performance when nesting factories

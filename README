@@ -28,10 +28,7 @@ you can set the column values for each record.
     person.last_name = "Smith"
   end
 
-This will do a mass insert into the database so it is very fast. For 
-performance reasons, "person" is not an instance of the model. It's 
-just a simple interface for setting the column values.
-
+This will do a mass insert into the database so it is very fast.
 The person object contains the "id" so you can set up associations.
 
   Person.populate(3000) do |person|
@@ -68,6 +65,13 @@ If you need to generate fake data, there are a few methods to do this.
 For fancier data generation, try the Faker gem.
 
   http://faker.rubyforge.org
+
+
+== Important
+
+For performance reasons, this gem does not use actual instances of the 
+model. This means validations and callbacks are bypassed. It is up to 
+you to ensure you're adding valid data.
 
 
 == Development
