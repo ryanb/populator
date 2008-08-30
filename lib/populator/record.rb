@@ -6,6 +6,12 @@ module Populator
       @attributes = { :id => id }
       @columns = model_class.column_names
       @columns.each do |column|
+        if column == 'created_at' || column == 'updated_at'
+          @attributes[column.to_sym] = Time.now
+        end
+        if column == 'created_on' || column == 'updated_on'
+          @attributes[column.to_sym] = Date.today
+        end
         self.instance_eval <<-EOS
           def #{column}=(value)
             @attributes[:#{column}] = Populator.interpret_value(value)

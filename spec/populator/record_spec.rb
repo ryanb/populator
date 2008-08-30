@@ -32,4 +32,13 @@ describe Populator::Record do
     record.name = %w[foo bar]
     %w[foo bar].should include(record.name)
   end
+  
+  it "should automatically set created/updated columns" do
+    Product.stubs(:column_names).returns(%w[id created_at updated_at created_on updated_on])
+    record = Populator::Record.new(Product, 1)
+    record.created_at.to_date.should == Date.today
+    record.updated_at.to_date.should == Date.today
+    record.created_on.should == Date.today
+    record.updated_on.should == Date.today
+  end
 end
