@@ -1,3 +1,5 @@
+*0.2.1* (August 30th, 2008)
+
 * wrap sqlite inserts in transaction to improve performance
 
 * default created_at/on and updated_at/on columns to current time
