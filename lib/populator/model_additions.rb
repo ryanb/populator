@@ -27,6 +27,6 @@ module Populator
   end
 end
 
-class ActiveRecord::Base
+ActiveRecord::Base.class_eval do
   extend Populator::ModelAdditions
 end

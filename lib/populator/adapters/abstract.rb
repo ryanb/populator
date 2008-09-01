@@ -13,6 +13,6 @@ module Populator
   end
 end
 
-class ActiveRecord::ConnectionAdapters::AbstractAdapter
+ActiveRecord::ConnectionAdapters::AbstractAdapter.class_eval do
   include Populator::Adapters::Abstract
 end
