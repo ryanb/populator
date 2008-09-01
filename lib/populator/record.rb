@@ -3,8 +3,7 @@ module Populator
   class Record
     attr_accessor :attributes
     
-    # Creates a new instance of Record and generates some accessor
-    # methods for setting attributes. Some attributes are set by default:
+    # Creates a new instance of Record. Some attributes are set by default:
     #
     # * <tt>id</tt> - defaults to id passed
     # * <tt>created_at</tt> - defaults to current time
@@ -21,22 +20,33 @@ module Populator
         if column == 'created_on' || column == 'updated_on'
           @attributes[column.to_sym] = Date.today
         end
-        self.instance_eval <<-EOS
-          def #{column}=(value)
-            @attributes[:#{column}] = Populator.interpret_value(value)
-          end
-          
-          def #{column}
-            @attributes[:#{column}]
-          end
-        EOS
       end
+    end
+    
+    # override id since method_missing won't catch this column name
+    def id
+      @attributes[:id]
     end
     
     # Return values for all columns inside an array.
     def attribute_values
       @columns.map do |column|
         @attributes[column.to_sym]
+      end
+    end
+    
+    private
+    
+    def method_missing(sym, *args, &block)
+      name = sym.to_s
+      if @columns.include?(name.sub('=', ''))
+        if name.include? '='
+          @attributes[name.sub('=', '').to_sym] = Populator.interpret_value(args.first)
+        else
+          @attributes[sym]
+        end
+      else
+        super
       end
     end
   end

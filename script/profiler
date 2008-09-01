@@ -30,7 +30,7 @@ begin
       printer_class = RubyProf::FlatPrinter
     end
     printer = printer_class.new(results)
-    printer.print($stderr, 0)
+    printer.print($stdout)
   rescue LoadError
     require "prof"
     $stderr.puts 'Using the old ruby-prof extension.'
@@ -39,7 +39,7 @@ begin
     profile_me
     results = Prof.stop
     require 'rubyprof_ext'
-    Prof.print_profile(results, $stderr)
+    Prof.print_profile(results, $stdout)
   end
 rescue LoadError
   require 'profiler'
@@ -47,5 +47,5 @@ rescue LoadError
   Profiler__.start_profile
   profile_me
   Profiler__.stop_profile
-  Profiler__.print_profile($stderr)
+  Profiler__.print_profile($stdout)
 end
