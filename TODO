@@ -8,7 +8,6 @@ Possible
 - add random_foo method to record for randomly generating content
 
 Performance
-- ruby-prof to see where the bottlenecks are
 - ensure instantiating the model is really that much of a performance hit.
 
 Support Environments
