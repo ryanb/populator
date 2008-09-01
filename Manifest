@@ -9,6 +9,7 @@ lib/populator.rb
 LICENSE
 Manifest
 populator.gemspec
+Rakefile
 README
 spec/database.yml
 spec/example_database.yml

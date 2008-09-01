@@ -10,7 +10,7 @@ this code is loosely based on.
 
 Install the gem:
 
-	gem install ryanb-populator --source http://gems.github.com
+  gem install populator
 
 And then load it in your project:
 
@@ -64,7 +64,7 @@ If you need to generate fake data, there are a few methods to do this.
 
 For fancier data generation, try the Faker gem.
 
-  http://faker.rubyforge.org
+http://faker.rubyforge.org
 
 
 == Important
@@ -80,7 +80,7 @@ See spec/README for instructions on running specs.
 
 This project can be found on github at the following URL.
 
-http://github.com/ryanb/populator/
+http://github.com/ryanb/populator
 
 If you would like to contribute to this project, please fork the 
 repository and send me a pull request.

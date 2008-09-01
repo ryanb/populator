@@ -1,3 +1,5 @@
+* improving inline documentation
+
 *0.2.1* (August 30th, 2008)
 
 * wrap sqlite inserts in transaction to improve performance
@@ -10,9 +12,9 @@
 
 * improving performance when nesting factories
 
-* adding Populate.sentences to generate a lot of text
+* adding Populator.sentences to generate a lot of text
 
-* adding Populate.words to fetch some random words
+* adding Populator.words to fetch some random words
 
 *0.1.0* (August 27th, 2008)
 
