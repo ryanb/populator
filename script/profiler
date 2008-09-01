@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 if ARGV.empty?
-  $stderr.puts "Usage: ./script/profiler 'Person.expensive_method(10)' [times] [flat|graph|graph_html]"
+  $stderr.puts "Usage: ./script/profiler [times] 'Person.expensive_method(10)'"
   exit(1)
 end
 
@@ -8,44 +8,23 @@ end
 # it's just a convenient, quick way to load all the requirements.
 require File.dirname(__FILE__) + '/../spec/spec_helper'
 
-# Define a method to profile.
-if ARGV[1] and ARGV[1].to_i > 1
-  eval "def profile_me() #{ARGV[1]}.times { #{ARGV[0]} } end"
-else
-  eval "def profile_me() #{ARGV[0]} end"
-end
+repeat = ARGV.first.to_i > 1 ? ARGV.shift.to_i : 1
+snippet = ARGV.shift
 
-# Use the ruby-prof extension if available.  Fall back to stdlib profiler.
-begin
-  begin
-    require "ruby-prof"
-    $stderr.puts 'Using the ruby-prof extension.'
-    RubyProf.measure_mode = RubyProf::WALL_TIME
-    RubyProf.start
-    profile_me
-    results = RubyProf.stop
-    if ARGV[2]
-      printer_class = RubyProf.const_get((ARGV[2] + "_printer").classify)
-    else
-      printer_class = RubyProf::FlatPrinter
-    end
-    printer = printer_class.new(results)
-    printer.print($stdout)
-  rescue LoadError
-    require "prof"
-    $stderr.puts 'Using the old ruby-prof extension.'
-    Prof.clock_mode = Prof::GETTIMEOFDAY
-    Prof.start
-    profile_me
-    results = Prof.stop
-    require 'rubyprof_ext'
-    Prof.print_profile(results, $stdout)
-  end
-rescue LoadError
-  require 'profiler'
-  $stderr.puts 'Using the standard Ruby profiler.'
-  Profiler__.start_profile
-  profile_me
-  Profiler__.stop_profile
-  Profiler__.print_profile($stdout)
+# Define a method to profile.
+eval "def profile_me() #{repeat}.times { #{snippet} } end"
+
+# Ensure we're running on a clean database
+[Product, Category].each(&:delete_all)
+
+require "ruby-prof"
+RubyProf.measure_mode = RubyProf::WALL_TIME
+RubyProf.start
+profile_me
+printer = RubyProf::GraphHtmlPrinter.new(RubyProf.stop)
+
+Dir.mkdir('tmp') unless File.exist? 'tmp'
+File.open('tmp/profile.html', 'w') do |file|
+  printer.print(file)
 end
+`open tmp/profile.html &`

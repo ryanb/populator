@@ -1,4 +1,5 @@
 pkg
 doc
+tmp/*
 *.sqlite3
 database.yml
