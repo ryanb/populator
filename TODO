@@ -9,7 +9,6 @@ Possible
 
 Performance
 - ruby-prof to see where the bottlenecks are
-- benchmark to find faster solutions
 - ensure instantiating the model is really that much of a performance hit.
 
 Support Environments
