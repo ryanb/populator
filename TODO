@@ -2,8 +2,6 @@ Features
 - get single table inheritance working.
 
 Possible
-- iterate through array instead of selecting at random to ensure all values are chosen
-- if hash is passed, apply given value that number of times: { 'foo' => 3, 'bar' => 2 }
 - randomly fill every column if no block is passed to populate
 - add random_foo method to record for randomly generating content
 

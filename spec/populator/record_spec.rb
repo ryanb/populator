@@ -41,4 +41,9 @@ describe Populator::Record do
     record.created_on.should == Date.today
     record.updated_on.should == Date.today
   end
+  
+  it "should use custom primary_key for auto-increment if specified" do
+    Product.stubs(:primary_key).returns('foo')
+    Populator::Record.new(Product, 123).foo.should == 123
+  end
 end

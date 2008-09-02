@@ -11,7 +11,7 @@ module Populator
     # * <tt>created_on</tt> - defaults to current date
     # * <tt>updated_on</tt> - defaults to current date
     def initialize(model_class, id)
-      @attributes = { :id => id }
+      @attributes = { model_class.primary_key.to_sym => id }
       @columns = model_class.column_names
       @columns.each do |column|
         if column == 'created_at' || column == 'updated_at'
@@ -39,9 +39,10 @@ module Populator
     
     def method_missing(sym, *args, &block)
       name = sym.to_s
-      if @columns.include?(name.sub('=', ''))
+      name_without_equal = name.sub('=', '')
+      if @columns.include?(name_without_equal) || @attributes.has_key?(name_without_equal.to_sym)
         if name.include? '='
-          @attributes[name.sub('=', '').to_sym] = Populator.interpret_value(args.first)
+          @attributes[name_without_equal.to_sym] = Populator.interpret_value(args.first)
         else
           @attributes[sym]
         end
