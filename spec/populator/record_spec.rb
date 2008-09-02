@@ -44,6 +44,18 @@ describe Populator::Record do
   
   it "should use custom primary_key for auto-increment if specified" do
     Product.stubs(:primary_key).returns('foo')
+    Product.stubs(:column_names).returns(['foo', 'name'])
     Populator::Record.new(Product, 123).foo.should == 123
+  end
+  
+  it "should default type to class name" do
+    Product.stubs(:column_names).returns(['id', 'type'])
+    Populator::Record.new(Product, 1).type.should == 'Product'
+  end
+  
+  it "should default specified inheritance_column to class name" do
+    Product.stubs(:inheritance_column).returns('foo')
+    Product.stubs(:column_names).returns(['id', 'foo'])
+    Populator::Record.new(Product, 1).foo.should == 'Product'
   end
 end

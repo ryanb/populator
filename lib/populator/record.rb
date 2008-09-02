@@ -10,15 +10,18 @@ module Populator
     # * <tt>updated_at</tt> - defaults to current time
     # * <tt>created_on</tt> - defaults to current date
     # * <tt>updated_on</tt> - defaults to current date
+    # * <tt>type</tt> - defaults to class name (for STI)
     def initialize(model_class, id)
       @attributes = { model_class.primary_key.to_sym => id }
       @columns = model_class.column_names
       @columns.each do |column|
-        if column == 'created_at' || column == 'updated_at'
+        case column
+        when 'created_at', 'updated_at'
           @attributes[column.to_sym] = Time.now
-        end
-        if column == 'created_on' || column == 'updated_on'
+        when 'created_on', 'updated_on'
           @attributes[column.to_sym] = Date.today
+        when model_class.inheritance_column
+          @attributes[column.to_sym] = model_class.to_s
         end
       end
     end
@@ -26,6 +29,11 @@ module Populator
     # override id since method_missing won't catch this column name
     def id
       @attributes[:id]
+    end
+    
+    # override type since method_missing won't catch this column name
+    def type
+      @attributes[:type]
     end
     
     # Return values for all columns inside an array.
@@ -39,10 +47,9 @@ module Populator
     
     def method_missing(sym, *args, &block)
       name = sym.to_s
-      name_without_equal = name.sub('=', '')
-      if @columns.include?(name_without_equal) || @attributes.has_key?(name_without_equal.to_sym)
+      if @columns.include?(name.sub('=', ''))
         if name.include? '='
-          @attributes[name_without_equal.to_sym] = Populator.interpret_value(args.first)
+          @attributes[name.sub('=', '').to_sym] = Populator.interpret_value(args.first)
         else
           @attributes[sym]
         end

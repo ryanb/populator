@@ -1,5 +1,4 @@
 Features
-- get single table inheritance working.
 
 Possible
 - randomly fill every column if no block is passed to populate
