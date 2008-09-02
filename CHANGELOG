@@ -1,16 +1,22 @@
-*0.2.2* (September 1st, 2008)
+0.2.3 (September 2nd, 2008)
+
+* support single table inhertance by setting inheritance_column to class name
+
+* support custom primary_key in model if they don't use "id"
+
+0.2.2 (September 1st, 2008)
 
 * performance improvements
 
 * improving inline documentation
 
-*0.2.1* (August 30th, 2008)
+0.2.1 (August 30th, 2008)
 
 * wrap sqlite inserts in transaction to improve performance
 
 * default created_at/on and updated_at/on columns to current time
 
-*0.2.0* (August 30th, 2008)
+0.2.0 (August 30th, 2008)
 
 * adding :per_query option to limit how many inserts are made per query
 
@@ -20,6 +26,6 @@
 
 * adding Populator.words to fetch some random words
 
-*0.1.0* (August 27th, 2008)
+0.1.0 (August 27th, 2008)
 
 * initial release
