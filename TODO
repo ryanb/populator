@@ -1,11 +1,6 @@
-Features
-
 Possible
 - randomly fill every column if no block is passed to populate
 - add random_foo method to record for randomly generating content
-
-Performance
-- ensure instantiating the model is really that much of a performance hit.
 
 Support Environments
 - sqlite 2
@@ -13,5 +8,4 @@ Support Environments
 - edge rails
 
 Tests
-- automatically detect schema changes and rebuild database
 - add db:reset, db:drop and db:create rake tasks
