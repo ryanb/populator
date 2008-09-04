@@ -28,6 +28,14 @@ module Populator
       end.join('. ')
     end
     
+    # Generate a given number of paragraphs. If a range is passed, it will generate
+    # a random number of paragraphs within that range.
+    def paragraphs(total)
+      (1..interpret_value(total)).map do
+        sentences(3..8).capitalize
+      end.join("\n\n")
+    end
+    
     # If an array or range is passed, a random value will be selected to match.
     # All other values are simply returned.
     def interpret_value(value)

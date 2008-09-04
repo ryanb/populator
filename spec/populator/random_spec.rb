@@ -42,4 +42,8 @@ describe Populator::Random do
   it "should generate 3 random sentences" do
     Populator.sentences(3).split(/\. [A-Z]/).should have(3).records
   end
+  
+  it "should generate 3 random paragraphs" do
+    Populator.paragraphs(3).split(/\n\n/).should have(3).records
+  end
 end

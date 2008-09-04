@@ -2,6 +2,8 @@
 
 Populate an Active Record database with mass insert.
 
+You can find the rdocs at http://populator.rubyforge.org.
+
 Special thanks to Zach Dennis for his ar-extensions gem which some of 
 this code is loosely based on.
 
@@ -41,7 +43,7 @@ The person object contains the "id" so you can set up associations.
 
 That will create 30 projects for each person.
 
-Passing an range or array of values will randomly select one.
+Passing a range or array of values will randomly select one.
 
   Person.populate(1000..5000) do |person|
     person.gender = ['male', 'female']
@@ -61,6 +63,7 @@ If you need to generate fake data, there are a few methods to do this.
   Populator.words(3) # generates 3 random words separated by spaces
   Populator.words(10..20) # generates between 10 and 20 random words
   Populator.sentences(5) # generates 5 sentences
+  Populator.paragraphs(3) # generates 3 paragraphs
 
 For fancier data generation, try the Faker gem.
 
@@ -81,6 +84,8 @@ See spec/README for instructions on running specs.
 This project can be found on github at the following URL.
 
 http://github.com/ryanb/populator
+
+If you find a bug, please send me a message on GitHub.
 
 If you would like to contribute to this project, please fork the 
 repository and send me a pull request.

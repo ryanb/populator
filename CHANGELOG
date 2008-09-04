@@ -1,3 +1,5 @@
+* adding Populator.paragraphs to generate paragraphs of text
+
 0.2.3 (September 2nd, 2008)
 
 * support single table inhertance by setting inheritance_column to class name
