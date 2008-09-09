@@ -9,6 +9,7 @@ Echoe.new('populator', '0.2.3') do |p|
   p.author         = 'Ryan Bates'
   p.email          = "ryan (at) railscasts (dot) com"
   p.ignore_pattern = ["script/*", "**/*.sqlite3", "tmp/*"]
+  p.development_dependencies = []
 end
 
 Dir["#{File.dirname(__FILE__)}/tasks/*.rake"].sort.each { |ext| load ext }
