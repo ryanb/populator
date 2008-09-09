@@ -1,3 +1,7 @@
+0.2.4 (September 9th, 2008)
+
+* removing echoe from gem development dependencies, which didn't seem to work in the first place.
+
 * adding Populator.paragraphs to generate paragraphs of text
 
 0.2.3 (September 2nd, 2008)

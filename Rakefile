@@ -2,7 +2,7 @@ require 'rubygems'
 require 'rake'
 require 'echoe'
 
-Echoe.new('populator', '0.2.3') do |p|
+Echoe.new('populator', '0.2.4') do |p|
   p.summary        = "Mass populate an Active Record database."
   p.description    = "Mass populate an Active Record database."
   p.url            = "http://github.com/ryanb/populator"
