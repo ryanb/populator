@@ -43,6 +43,13 @@ module Populator
       end
     end
     
+    def attributes=(values_hash)
+      values_hash.each_pair do |key, value|
+        value = value.call if value.is_a?(Proc)
+        self.send((key.to_s + "=").to_sym, value)
+      end
+    end
+    
     private
     
     def method_missing(sym, *args, &block)

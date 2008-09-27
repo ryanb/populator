@@ -58,4 +58,17 @@ describe Populator::Record do
     Product.stubs(:column_names).returns(['id', 'foo'])
     Populator::Record.new(Product, 1).foo.should == 'Product'
   end
+  
+  it "should allow set via attributes hash" do
+    record = Populator::Record.new(Product, 1)
+    record.attributes = {:stock => 2..5}
+    record.stock.should >= 2
+    record.stock.should <= 5
+  end
+  
+  it "should take a proc object via attributes hash" do
+    record = Populator::Record.new(Product, 1)
+    record.attributes = {:stock => lambda {15}}
+    record.stock.should == 15
+  end
 end
