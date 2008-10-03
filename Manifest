@@ -1,5 +1,6 @@
 CHANGELOG
 lib/populator/adapters/abstract.rb
+lib/populator/adapters/oracle.rb
 lib/populator/adapters/sqlite.rb
 lib/populator/factory.rb
 lib/populator/model_additions.rb
@@ -9,7 +10,7 @@ lib/populator.rb
 LICENSE
 Manifest
 Rakefile
-README
+README.rdoc
 spec/database.yml
 spec/example_database.yml
 spec/models/category.rb
