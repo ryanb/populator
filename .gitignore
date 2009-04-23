@@ -3,3 +3,4 @@ doc
 tmp/*
 *.sqlite3
 database.yml
+nbproject
