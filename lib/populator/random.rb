@@ -10,7 +10,9 @@ module Populator
       when Integer then number_in_range(range)
       when Time then time_in_range(range)
       when Date then date_in_range(range)
-      else range.to_a.rand
+      else 
+        array = range.to_a
+        array[rand(array.size)]
       end
     end
     
