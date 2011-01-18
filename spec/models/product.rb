@@ -15,7 +15,7 @@ class CreateProducts < ActiveRecord::Migration
       t.integer  :category_id
     end
   end
-  
+
   def self.down
     drop_table :products
   end

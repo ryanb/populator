@@ -1,6 +1,9 @@
-pkg
-doc
+spec/database.yml
+Gemfile.lock
+.bundle
+*.gem
 tmp/*
 *.sqlite3
-database.yml
 nbproject
+*.swp
+**/*.swp

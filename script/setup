@@ -1,4 +1,0 @@
-#!/bin/sh
-
-cp spec/example_database.yml spec/database.yml
-echo "Now configure spec/database.yml and create your databases."

@@ -8,7 +8,7 @@ class CreateCategories < ActiveRecord::Migration
       t.string :name
     end
   end
-  
+
   def self.down
     drop_table :categories
   end

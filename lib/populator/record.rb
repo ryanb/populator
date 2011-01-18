@@ -2,7 +2,7 @@ module Populator
   # This is what is passed to the block when calling populate.
   class Record
     attr_accessor :attributes
-    
+
     # Creates a new instance of Record. Some attributes are set by default:
     #
     # * <tt>id</tt> - defaults to id passed
@@ -25,33 +25,33 @@ module Populator
         end
       end
     end
-    
+
     # override id since method_missing won't catch this column name
     def id
       @attributes[:id]
     end
-    
+
     # override type since method_missing won't catch this column name
     def type
       @attributes[:type]
     end
-    
+
     # Return values for all columns inside an array.
     def attribute_values
       @columns.map do |column|
         @attributes[column.to_sym]
       end
     end
-    
+
     def attributes=(values_hash)
       values_hash.each_pair do |key, value|
         value = value.call if value.is_a?(Proc)
         self.send((key.to_s + "=").to_sym, value)
       end
     end
-    
+
     private
-    
+
     def method_missing(sym, *args, &block)
       name = sym.to_s
       if @columns.include?(name.sub('=', ''))

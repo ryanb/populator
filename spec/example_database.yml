@@ -9,7 +9,7 @@ mysql:
   adapter: mysql
   database: populator_test
   username: populator
-  password: 
+  password:
   host: localhost
 
 postgresql:

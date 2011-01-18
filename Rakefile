@@ -1,15 +1,23 @@
 require 'rubygems'
 require 'rake'
-require 'echoe'
+require 'rspec/core/rake_task'
 
-Echoe.new('populator', '0.2.4') do |p|
-  p.summary        = "Mass populate an Active Record database."
-  p.description    = "Mass populate an Active Record database."
-  p.url            = "http://github.com/ryanb/populator"
-  p.author         = 'Ryan Bates'
-  p.email          = "ryan (at) railscasts (dot) com"
-  p.ignore_pattern = ["script/*", "**/*.sqlite3", "tmp/*"]
-  p.development_dependencies = []
+ADAPTERS = YAML.load(File.read(File.dirname(__FILE__) + "/../spec/database.yml")).keys
+
+desc "Run specs under all supported databases"
+task :spec => ADAPTERS.map { |a| "spec:#{a}" }
+
+namespace :spec do
+  ADAPTERS.each do |adapter|
+    namespace :prepare do
+      task adapter do
+        ENV["POPULATOR_ADAPTER"] = adapter
+      end
+    end
+
+    desc "Run specs under #{adapter}"
+    RSpec::Core::RakeTask.new(adapter => "spec:prepare:#{adapter}") do |t|
+      t.verbose = false
+    end
+  end
 end
-
-Dir["#{File.dirname(__FILE__)}/tasks/*.rake"].sort.each { |ext| load ext }

@@ -1,8 +1,8 @@
 module Populator
   module Adapters
-    module Oracle 
+    module Oracle
 
-      # Executes SQL statements one at a time. 
+      # Executes SQL statements one at a time.
 
       def populate(table, columns, rows, name = nil)
         rows.each do |row|
@@ -24,4 +24,3 @@ module ActiveRecord # :nodoc: all
     end
   end
 end
-

@@ -1,0 +1,19 @@
+= Running Populator Specs
+
+To prepare the specs, run the following commands.
+
+  bundle
+  cp spec/example_database.yml spec/database.yml
+
+Configure the database.yml file to work with your databases. You can add and remove entries here as well to test different databases. A rake task is available to run the specs for each database.
+
+  rake spec             # Run specs under all databases
+  rake spec:mysql       # Run specs under mysql
+  rake spec:sqlite3     # Run specs under sqlite3
+  rake spec:postgresql  # Run specs under postgresql
+  ...
+
+Don't forget to create the user and database as necessary. You can do so under MySQL with these commands.
+
+  CREATE DATABASE populator_test;
+  GRANT ALL ON populator_test.* TO populator@localhost;

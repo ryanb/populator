@@ -9,7 +9,7 @@ module Populator
           end
         end
       end
-      
+
       def populate(table, columns, rows, name = nil)
         queries = []
         rows.each do |row|
