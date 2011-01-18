@@ -1,6 +1,6 @@
 1.0.0 (not yet released)
 
-* adding PostgreSQL adapter (thanks phlawski)
+* Improving PostgreSQL adapter (thanks phlawski)
 
 * adding Oracle adapter (thanks Andrew N)
 

@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../spec_helper.rb'
+require "spec_helper"
 
 describe Populator::ModelAdditions do
   it "should add populate method to active record class" do

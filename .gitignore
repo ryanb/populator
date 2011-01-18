@@ -3,7 +3,6 @@ Gemfile.lock
 .bundle
 *.gem
 tmp/*
-*.sqlite3
 nbproject
 *.swp
 **/*.swp

@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../spec_helper.rb'
+require "spec_helper"
 
 describe Populator::Random do
   it "should pick a random number in range excluding last value" do
@@ -26,7 +26,7 @@ describe Populator::Random do
   end
 
   it "should pick a random string by converting to array" do
-    Kernel.expects(:rand).with(5).returns(2)
+    Populator.expects(:rand).with(5).returns(2)
     Populator.value_in_range('a'..'e').should == 'c'
   end
 

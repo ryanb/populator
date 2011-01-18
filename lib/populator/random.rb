@@ -10,14 +10,14 @@ module Populator
       when Integer then number_in_range(range)
       when Time then time_in_range(range)
       when Date then date_in_range(range)
-      else range.to_a.rand
+      else range.to_a[rand(range.to_a.length)]
       end
     end
 
     # Generate a given number of words. If a range is passed, it will generate
     # a random number of words within that range.
     def words(total)
-      (1..interpret_value(total)).map { WORDS.rand }.join(' ')
+      (1..interpret_value(total)).map { WORDS.sample }.join(' ')
     end
 
     # Generate a given number of sentences. If a range is passed, it will generate
@@ -40,7 +40,7 @@ module Populator
     # All other values are simply returned.
     def interpret_value(value)
       case value
-      when Array then value.rand
+      when Array then value[rand(value.length)]
       when Range then value_in_range(value)
       else value
       end

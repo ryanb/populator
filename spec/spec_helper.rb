@@ -1,8 +1,9 @@
 require 'rubygems'
-require 'spec'
-require 'active_support'
-require 'active_record'
-require File.dirname(__FILE__) + '/../lib/populator.rb'
+require 'bundler/setup'
+
+Bundler.require(:default)
+
+require 'active_support/all'
 
 adapter = ENV['POPULATOR_ADAPTER'] || 'sqlite3'
 puts "Running on #{adapter}"
@@ -43,6 +44,6 @@ require File.dirname(__FILE__) + '/models/product.rb'
 CreateCategories.migrate(:up) unless Category.table_exists?
 CreateProducts.migrate(:up) unless Product.table_exists?
 
-Spec::Runner.configure do |config|
+RSpec.configure do |config|
   config.mock_with :mocha
 end
