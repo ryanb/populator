@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = "populator"
-  s.version     = "1.0.0.beta1"
+  s.version     = "1.0.0"
   s.author      = "Ryan Bates"
   s.email       = "ryan@railscasts.com"
   s.homepage    = "http://github.com/ryanb/populator"

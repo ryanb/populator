@@ -1,8 +1,14 @@
-1.0.0 (not yet released)
+1.0.0 (January 25, 2011)
 
-* Improving PostgreSQL adapter (thanks phlawski)
+* Fixing SQLite adapter to work in Rails 3
+
+* Improving PostgreSQL adapter (thanks phlawski and zehkae)
 
 * adding Oracle adapter (thanks Andrew N)
+
+* Upgrading to RSpec 2 and Rails 3 in specs
+
+* New Gemfile and .rvmrc file to make development and running specs easier
 
 
 0.2.4 (September 9th, 2008)
