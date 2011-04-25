@@ -48,9 +48,10 @@ module Populator
     # :per_query limit option is reached.
     def build_records(amount, per_query, &block)
       amount.times do
-        record = Record.new(@model_class, last_id_in_database + @records.size + 1)
+        index = last_id_in_database + @records.size + 1
+        record = Record.new(@model_class, index)
         @records << record
-        block.call(record) if block
+        block.call(record, index) if block
         save_records if @records.size >= per_query
       end
     end

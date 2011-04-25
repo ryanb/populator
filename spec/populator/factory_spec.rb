@@ -43,6 +43,18 @@ describe Populator::Factory do
       @factory.populate(5, :per_query => 2)
       $queries_executed.grep(/^insert/i).should have(3).records
     end
+
+    it 'should pass index to populator block to help eliminate duplicates' do
+      Product.delete_all
+      indexes = []
+      num_to_populate = 5
+      @factory.populate(num_to_populate) do |product, index|
+        product.name = "unique name #{index}"
+      end
+      product_names = Product.all.map(&:name)
+      expected_product_names = (1..num_to_populate).to_a.map { |index| "unique name #{index}" }
+      product_names.should == expected_product_names
+    end
   end
 
   it "should only use two queries when nesting factories (one for each class)" do
