@@ -74,7 +74,7 @@ module Populator
     end
 
     def last_id_in_database
-      @last_id_in_database ||= @model_class.connection.select_value("SELECT #{@model_class.primary_key} FROM #{@model_class.quoted_table_name} ORDER BY #{@model_class.primary_key} DESC", "#{@model_class.name} Last ID").to_i
+      @last_id_in_database ||= @model_class.connection.select_value("SELECT MAX(#{@model_class.primary_key}) FROM #{@model_class.quoted_table_name}", "#{@model_class.name} Last ID").to_i
     end
 
     def columns_sql
