@@ -7,11 +7,13 @@ Populate an Active Record database with mass insertion.
 
 == Installation
 
-<b>Rails 3</b> support is currently being worked on. Stay tuned.
-
 In <b>Rails 2</b>, install the gem.
 
   gem install populator
+
+In <b>Rails 3</b>, add the gem to your Gemfile
+
+  gem "populator"
 
 And then load it in a rake task or elsewhere.
 
