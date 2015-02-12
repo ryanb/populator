@@ -59,7 +59,7 @@ If you need to generate fake data, there are a few methods to do this.
   Populator.sentences(5) # generates 5 sentences
   Populator.paragraphs(3) # generates 3 paragraphs
 
-For fancier data generation, try the {Faker gem}[http://faker.rubyforge.org].
+For fancier data generation, try the {Faker gem}[https://github.com/stympy/faker].
 
 
 == Important
