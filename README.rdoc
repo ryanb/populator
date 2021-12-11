@@ -1,3 +1,8 @@
+= Unmaintained
+
+The Populator gem is <b>no longer maintained</b>. Feel free to fork this project.
+
+
 = Populator
 
 RDocs[http://rdoc.info/projects/ryanb/populator] | Screencast[http://railscasts.com/episodes/126-populating-a-database]
